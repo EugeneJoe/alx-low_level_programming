@@ -11,7 +11,7 @@ int write(int filedes, const char *buf, unsigned int nbyte);
 int main(int argc, char **argv)
 {
 	write(2, "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n",
-	      65);
+	      64);
 
 	return (1);
 }
