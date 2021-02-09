@@ -9,6 +9,7 @@
 int print_last_digit(int x)
 {
 	int c;
+
 	if (x < 0)
 		x = x * -1;
 
