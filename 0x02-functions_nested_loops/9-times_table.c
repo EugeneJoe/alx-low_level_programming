@@ -7,7 +7,7 @@
  */
 void times_table(void)
 {
-	int table[10][10];
+	int table[9][9];
 	int i, j;
 
 	i = 0;
@@ -19,23 +19,23 @@ void times_table(void)
 			table[i][j] = i * j;
 			if ((table[i][j] / 10) != 0)
 			{
-				_putchar((table[i][j] / 10) + '0');
-				_putchar((table[i][j] % 10) + '0');
-				if (j != 9)
+				if (j != 0)
 				{
 					_putchar(',');
 					_putchar(' ');
 				}
+				_putchar((table[i][j] / 10) + '0');
+				_putchar((table[i][j] % 10) + '0');
 			}
 			else
 			{
-				_putchar(table[i][j] + '0');
-				if (j != 9)
+				if (j != 0)
 				{
 					_putchar(',');
 					_putchar(' ');
 					_putchar(' ');
 				}
+				_putchar(table[i][j] + '0');
 			}
 			j++;
 		}
