@@ -18,3 +18,14 @@ void natural_numbers(void)
 	}
 	printf("%d\n", sum);
 }
+
+/**
+ * main - call function natural_numbers
+ * Return: Always 0
+ */
+int main(void)
+{
+	natural_numbers();
+
+	return (0);
+}
