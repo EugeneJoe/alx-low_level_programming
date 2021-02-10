@@ -6,7 +6,8 @@
  */
 void fibonacci3(void)
 {
-	unsigned long int fi, sec, next, j;
+	unsigned long int fi, sec, next;
+	int j;
 
 	fi = 1;
 	sec = 2;
