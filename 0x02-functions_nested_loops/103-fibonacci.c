@@ -22,7 +22,7 @@ void fibonacci2(void)
 		if (first > 4000000)
 			break;
 	}
-	printf("\n%li\n", sum);
+	printf("%li\n", sum);
 }
 
 /**
