@@ -6,7 +6,7 @@
  */
 void fibonacci3(void)
 {
-	unsigned long int fi, sec, next;
+	unsigned int fi, sec, next;
 	int j;
 
 	fi = 1;
@@ -16,10 +16,10 @@ void fibonacci3(void)
 	{
 		if (j == 97)
 		{
-			printf("%lu", fi);
+			printf("%u", fi);
 			continue;
 		}
-		printf("%lu, ", fi);
+		printf("%u, ", fi);
 		next = fi + sec;
 		fi = sec;
 		sec = next;
