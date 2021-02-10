@@ -11,15 +11,18 @@ void fibonacci2(void)
 
 	first = 1;
 	second = 2;
-	while (first <= 4000000)
+	sum = 0;
+	while (1)
 	{
-		if ((first <= 4000000) && (first % 2 == 0))
+		if (first % 2 == 0)
 			sum += first;
 		temp = first + second;
 		first = second;
 		second = temp;
+		if (first > 4000000)
+			break;
 	}
-	printf("%li\n", sum);
+	printf("\n%li\n", sum);
 }
 
 /**
