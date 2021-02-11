@@ -1,8 +1,9 @@
 #include "holberton.h"
 
 /**
- * print_line - prints _  n times to make a straight line, followed by new line
- * @n: number of times to print _
+ * print_diagonal - prints '_' n times to make a straight line,
+ * followed by new line
+ * @n: number of times to print '_'
  * Return: no return value
  */
 void print_diagonal(int n)
