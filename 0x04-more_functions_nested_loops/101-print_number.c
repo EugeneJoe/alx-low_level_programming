@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * print-number - prints number to screen
+ * print_number - prints number to screen
  * @n: numbert ot be printed
  * Return: no return value
  */
