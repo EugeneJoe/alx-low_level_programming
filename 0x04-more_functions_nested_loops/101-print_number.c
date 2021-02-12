@@ -2,7 +2,7 @@
 
 /**
  * print_number - prints number to screen
- * @n: numbert ot be printed
+ * @n: number to be printed
  * Return: no return value
  */
 void print_number(int n)
@@ -11,9 +11,10 @@ void print_number(int n)
 
 	num = n;
 	if (n < 0)
-		_putchar('-'),
-			num *= -1;
-
+	{
+		_putchar('-');
+		num *= -1;
+	}
 	if (num / 10)
 		print_number(num / 10);
 
