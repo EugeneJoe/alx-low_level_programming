@@ -13,8 +13,8 @@ void puts_half(char *str)
 	{
 		x++;
 	}
-
-	y = (x % 2) == 0 ? x / 2 : (x - 1) / 2;
+	y = 0;
+	y = (x % 2) == 0 ? x / 2 : ((x - 1) / 2) + 1;
 	for (; *(str + y) != '\0'; y++)
 		_putchar(*(str + y));
 	_putchar('\n');
