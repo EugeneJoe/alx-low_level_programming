@@ -21,18 +21,18 @@ int _islower(char c)
  */
 char *cap_string(char *s)
 {
-	int seps[] = {44,59,46,33,63,34,40,41,123,125,32,10,9};
-	int count, coun2;
-	char current;
+	int seps[] = {44, 59, 46, 33, 63, 34, 40, 41, 123, 125, 32, 10, 9};
+	int count, count2;
+	char now;
 
 	for (count = 0; *(s + count) != '\0'; count++)
 	{
-		current = *(s + count);
-		if (count == 0 && _islower(current))
+		now = *(s + count);
+		if (count == 0 && _islower(now))
 			*(s + count) -= 32;
-		for (coun2 = 0; coun2 < 13; coun2++)
+		for (count2 = 0; count2 < 13; count2++)
 		{
-			if (current == seps[coun2] && _islower(*(s + count + 1)))
+			if (now == seps[count2] && _islower(*(s + count + 1)))
 				*(s + count + 1) -= 32;
 		}
 	}
