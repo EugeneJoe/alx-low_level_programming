@@ -1,9 +1,5 @@
 #include <stdio.h>
 
-/**
- * main - print number
- * Return: void
- */
 int main(void)
 {
 	int n;
