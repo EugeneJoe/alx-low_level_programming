@@ -56,3 +56,7 @@ greater than 0.
 
 A program that finds and prints the largest prime factor of the number
 612852475143, followed by a new line.
+
+## 101-print_number.c
+
+A function that prints an integer stored in an integer variable.
