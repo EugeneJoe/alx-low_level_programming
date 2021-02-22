@@ -26,5 +26,6 @@ char *_strchr(char *s, char c)
 	}
 	if (found)
 		return (found);
-	else return (0);
+	else
+		return (0);
 }
