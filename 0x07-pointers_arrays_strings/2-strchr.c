@@ -7,12 +7,15 @@
  */
 char *_strchr(char *s, char c)
 {
-	unsigned int index;
+	unsigned int index, length;
 	char *found;
 
 	found = 0;
 	index = 0;
-	while (*(s + index) != '\0')
+	length = 0;
+	while (*(s + length) != '\0')
+		length++;
+	while (index <= length)
 	{
 		if (*(s + index) == c)
 		{
@@ -21,5 +24,7 @@ char *_strchr(char *s, char c)
 		}
 		index++;
 	}
-	return (found);
+	if (found)
+		return (found);
+	else return (0);
 }
