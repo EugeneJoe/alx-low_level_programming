@@ -2,7 +2,7 @@
 #include "holberton.h"
 
 /**
- * print_chessboard - prints a chessboard, using the 1st character of each piece
+ * print_chessboard - prints chessboard, using the 1st character of each piece
  * name to represent the chess piece
  * @a: 2D array containing the chessboard characters
  *
