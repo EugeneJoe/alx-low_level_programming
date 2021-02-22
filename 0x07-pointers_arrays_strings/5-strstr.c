@@ -15,7 +15,7 @@ char *_strstr(char *haystack, char *needle)
 	while (*(needle + length) != '\0')
 		length++;
 	if (length == 0)
-		return (0);
+		return (haystack);
 	index = 0;
 	found = 0;
 	while (*(haystack + index) != '\0')
@@ -23,9 +23,9 @@ char *_strstr(char *haystack, char *needle)
 		index2 = 0;
 		if (*(haystack + index) == *(needle + index2))
 		{
-			pos = (haystack + index);
-			for (m = index, index2 = 0; *(needle + index2) != '\0';
-			     m++, index2++)
+			pos = haystack + index;
+			for (m = index, index2 = 0; *(needle + index2) != '\0'
+				     && *(haystack + m) != '\0'; m++, index2++)
 			{
 				if (*(haystack + m) == *(needle + index2))
 				{
