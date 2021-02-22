@@ -8,9 +8,14 @@
  */
 char *_strstr(char *haystack, char *needle)
 {
-	unsigned int index, index2, found, m;
+	unsigned int index, index2, found, m, length;
 	char *pos;
 
+	length = 0;
+	while (*(needle + length) != '\0')
+		length++;
+	if (length == 0)
+		return (0);
 	index = 0;
 	found = 0;
 	while (*(haystack + index) != '\0')
