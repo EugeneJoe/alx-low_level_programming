@@ -21,7 +21,10 @@ int main(int argc, char **argv)
 	}
 	cash = atoi(argv[1]);
 	if (cash < 0)
+	{
 		printf("0\n");
+		return (0);
+	}
 	if (cash >= 25)
 	{
 		coins += cash / 25;
