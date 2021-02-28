@@ -13,10 +13,16 @@ int digitscheck(char *s)
 
 	while (*s)
 	{
+		printf("%d\n", *s);
 		if (*s < 48 || *s > 57)
+		{
 			check = 1;
+			return (check);
+		}
 		else
+		{
 			check = 0;
+		}
 		s++;
 	}
 	return (check);
