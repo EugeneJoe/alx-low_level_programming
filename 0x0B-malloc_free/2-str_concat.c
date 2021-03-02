@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * *str_concat - concatenates two strings and stores result in dynamically
@@ -14,6 +13,10 @@ char *str_concat(char *s1, char *s2)
 	char *s;
 	int len1, len2, index, index2;
 
+	if (s1 == 0)
+		s1 = "";
+	if (s2 == 0)
+		s2 = "";
 	len1 = 0;
 	while (*(s1 + len1))
 		len1++;
@@ -21,8 +24,8 @@ char *str_concat(char *s1, char *s2)
 	while (*(s2 + len2))
 		len2++;
 	s = malloc(sizeof(char) * (len1 + len2));
-	if (s == NULL)
-		return (NULL);
+	if (s == 0)
+		return (0);
 	for (index = 0; index < len1; index++)
 		*(s + index) = *(s1 + index);
 	for (index2 = 0; index2 < len2; index2++, index++)
