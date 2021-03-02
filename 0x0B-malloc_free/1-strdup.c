@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * *_strdup - copies string and stores copy in newly created memory block
@@ -13,13 +12,13 @@ char *_strdup(char *str)
 	int index, length;
 
 	length = 0;
-	while (*(str + length) != '\0')
+	while (*(str + length))
 		length++;
-	if (length == NULL)
-		return (NULL);
+	if (length == 0)
+		return (0);
 	s = malloc(sizeof(char) * length);
-	if (s == NULL)
-		return (NULL);
+	if (s == 0)
+		return (0);
 	for (index = 0; index < length; index++)
 		*(s + index) = *(str + index);
 	*(s + index) = '\0';
