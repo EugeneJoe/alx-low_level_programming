@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * **alloc_grid - dynamically create 2d array and initialize each element to 0
@@ -14,15 +13,15 @@ int **alloc_grid(int width, int height)
 	int index, i, j;
 
 	if (width <= 0 || height <= 0)
-		return (NULL);
-	a = malloc(sizeof(int *) * height);
-	if (a == NULL)
-		return (NULL);
+		return (0);
+	a = (int **)malloc(sizeof(int *) * height);
+	if (a == 0)
+		return (0);
 	for (index = 0; index < height; index++)
 	{
-		*(a + index) = malloc(sizeof(int) * width);
-		if (*(a + index) == NULL)
-			return (NULL);
+		*(a + index) = (int *)malloc(sizeof(int) * width);
+		if (*(a + index) == 0)
+			return (0);
 	}
 	for (i = 0; i < height; i++)
 	{
