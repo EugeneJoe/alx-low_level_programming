@@ -72,18 +72,15 @@ char **strtow(char *str)
 	char **s;
 	int wordno, i, j, k, length, idx;
 
-	if (str == NULL || str == '\0')
+	if (str == NULL || *str == '\0')
 		return (0);
 	wordno = wordnos(str);
 	s = (char **)malloc(sizeof(char *) * (wordno + 1));
 	if (s == 0)
-	{
-		free(s);
 		return (0);
-	}
 	idx = 0;
 	i = 0;
-	while (*(str + i++) != '\0')
+	while (*(str + i) != '\0')
 	{
 		if (*(str + i) != 32 && *(str + i) != '\0')
 		{
@@ -105,6 +102,7 @@ char **strtow(char *str)
 			idx++;
 			i = j;
 		}
+		i++;
 	}
 	cpystr(s, str);
 	s[wordno] = '\0';
