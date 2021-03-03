@@ -91,7 +91,7 @@ char **strtow(char *str)
 				length++;
 				j++;
 			}
-			*(s + idx) = (char *)malloc(sizeof(char) * (length + 1));
+			*(s + idx) = (char *)malloc(sizeof(char) * (length));
 			if (*(s + idx) == 0)
 			{
 				for (k = 0; k < idx; k++)
