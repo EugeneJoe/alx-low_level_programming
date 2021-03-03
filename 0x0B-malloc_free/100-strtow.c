@@ -18,14 +18,13 @@ int wordnos(char *str)
 		if (*(str + i) != 32 && *(str + i) != '\0')
 		{
 			j = i;
-			while (*(str + j) != 32 && *(str + j) != '\0')   /*Talk is cheap. Show me your code.*/
+			while (*(str + j) != 32 && *(str + j) != '\0')
 				j++;
 			wordno++;
 			i = j - 1;
 		}
 		i++;
 	}
-	printf("wordno is %d\n", wordno);
 	return (wordno);
 }
 
