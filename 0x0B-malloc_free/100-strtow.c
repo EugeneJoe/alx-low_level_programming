@@ -18,13 +18,14 @@ int wordnos(char *str)
 		if (*(str + i) != 32 && *(str + i) != '\0')
 		{
 			j = i;
-			while (*(str + j) != 32 && *(str + j) != '\0')
+			while (*(str + j) != 32 && *(str + j) != '\0')   /*Talk is cheap. Show me your code.*/
 				j++;
 			wordno++;
-			i = j;
+			i = j - 1;
 		}
 		i++;
 	}
+	printf("wordno is %d\n", wordno);
 	return (wordno);
 }
 
@@ -72,11 +73,11 @@ char **strtow(char *str)
 	char **s;
 	int wordno, i, j, k, length, idx;
 
-	if (str == NULL || *str == '\0')
+	if (str == NULL || str[0] == '\0')
 		return (0);
 	wordno = wordnos(str);
 	s = (char **)malloc(sizeof(char *) * (wordno + 1));
-	if (s == 0)
+	if (s == 0 || wordno == 0)
 		return (0);
 	idx = 0;
 	i = 0;
