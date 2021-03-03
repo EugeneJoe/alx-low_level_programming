@@ -56,7 +56,7 @@ void cpystr(char **s, char *str)
 			}
 			s[idx][l] = '\0';
 			idx++;
-			i = j - 1;
+			i = j;
 		}
 		i++;
 	}
@@ -101,7 +101,7 @@ char **strtow(char *str)
 				return (0);
 			}
 			idx++;
-			i = j - 1;
+			i = j;
 		}
 		i++;
 	}
