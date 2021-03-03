@@ -75,7 +75,7 @@ char **strtow(char *str)
 	if (str == NULL || str[0] == '\0')
 		return (0);
 	wordno = wordnos(str);
-	s = (char **)malloc(sizeof(char *) * (wordno + 1));
+	s = (char **)malloc(sizeof(char *) * (wordno));
 	if (s == 0 || wordno == 0)
 		return (0);
 	idx = 0;
@@ -91,7 +91,7 @@ char **strtow(char *str)
 				length++;
 				j++;
 			}
-			*(s + idx) = (char *)malloc(sizeof(char) * (length + 2));
+			*(s + idx) = (char *)malloc(sizeof(char) * (length + 1));
 			if (*(s + idx) == 0)
 			{
 				for (k = 0; k < idx; k++)
