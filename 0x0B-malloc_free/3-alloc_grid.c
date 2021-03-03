@@ -16,12 +16,20 @@ int **alloc_grid(int width, int height)
 		return (0);
 	a = (int **)malloc(sizeof(int *) * height);
 	if (a == 0)
+	{
+		free(a);
 		return (0);
+	}
 	for (index = 0; index < height; index++)
 	{
 		*(a + index) = (int *)malloc(sizeof(int) * width);
 		if (*(a + index) == 0)
+		{
+			for (i = 0; i < index; i++)
+				free(*(a + i));
+			free(a);
 			return (0);
+		}
 	}
 	for (i = 0; i < height; i++)
 	{
