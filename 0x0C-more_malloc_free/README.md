@@ -37,3 +37,16 @@ included), ordered from min to max.
 If min is greater than max, the function returns NULL.
 If malloc fails, retunr NULL.
 If success, the function returns a pointer to the newly created array.
+
+## 100-realloc.c
+
+Reallocates a memory block using malloc and copies the old memory block contents
+to the new memory block contents. The function resizes a previously allocated
+memory block and frees the old memory block.
+
+## 101-mul.c
+
+Multiplies two numbers stored in strings and prints the result. If more than 2
+strings are passed, the function prints 'Error' and exits with a status of 98.
+If a non-digit character is encountered, the function prints 'Error' and exits
+with a status of 98.
