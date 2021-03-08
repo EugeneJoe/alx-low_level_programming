@@ -12,7 +12,7 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *mydog;
-	int lenname, lenowner;
+	int lenname, lenowner, i;
 
 	lenname = 0;
 	while (*(name + lenname) != '\0')
