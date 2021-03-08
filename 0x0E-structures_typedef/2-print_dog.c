@@ -15,4 +15,8 @@ void print_dog(struct dog *d)
 		printf("Age: %1.6f\n", d->age);
 		printf("Owner: %s\n", d->owner);
 	}
+	else
+	{
+		exit (98);
+	}
 }
