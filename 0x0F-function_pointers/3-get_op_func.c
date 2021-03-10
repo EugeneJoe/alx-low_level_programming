@@ -1,5 +1,5 @@
-#include "3-calc.h"
 #include <stdio.h>
+#include "3-calc.h"
 
 /**
  * get_op_func - selects the correct function to perform the operation selected
@@ -26,7 +26,7 @@ int (*get_op_func(char *s))(int, int)
 	int i;
 
 	i = 0;
-	while (i < 6)
+	while (i <= 4)
 	{
 		if (*s == *ops[i].op)
 			return (ops[i].f);
