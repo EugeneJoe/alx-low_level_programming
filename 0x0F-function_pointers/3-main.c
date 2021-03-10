@@ -25,10 +25,10 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(99);
 	}
-	if ((s == '/' || s == '%') && *argv[3] == '0')
+	if (argv[2][1] != '\0')
 	{
 		printf("Error\n");
-		exit(100);
+		exit(99);
 	}
 	result = (get_op_func(argv[2]))(atoi(argv[1]), atoi(argv[3]));
 	printf("%d\n", result);
