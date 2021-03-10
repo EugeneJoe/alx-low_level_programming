@@ -11,26 +11,26 @@
  */
 int main(int argc, char *argv[])
 {
-	int (*func)(int, int);
-	int result;
+	int result = 0;
+	char s;
 
 	if (argc != 4)
 	{
 		printf("Error\n");
 		exit(98);
 	}
-	if ((*argv[2] == '/' || *argv[2] == '%') && *argv[3] == '0')
-	{
-		printf("Error\n");
-		exit(100);
-	}
-	func = get_op_func(argv[2]);
-	if (func == NULL)
+	s = *argv[2];
+	if (s != '+' && s != '-' && s != '/' && s != '*' && s != '%')
 	{
 		printf("Error\n");
 		exit(99);
 	}
-	result = func(atoi(argv[1]), atoi(argv[3]));
+	if ((s == '/' || s == '%') && *argv[3] == '0')
+	{
+		printf("Error\n");
+		exit(100);
+	}
+	result = (get_op_func(argv[2]))(atoi(argv[1]), atoi(argv[3]));
 	printf("%d\n", result);
 
 	return (0);
