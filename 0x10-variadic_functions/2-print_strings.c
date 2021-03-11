@@ -43,6 +43,6 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	string = va_arg(stringlist, char *);
 	if (string == NULL)
 		string = "(nil)";
-	printf("%s\n", string, char *));
+	printf("%s\n", string);
 	va_end(stringlist);
 }
