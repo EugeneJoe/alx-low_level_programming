@@ -64,9 +64,8 @@ void print_all(const char * const format, ...)
 		}
 		if (i < len - 1)
 			printf(", ");
-		if (i == len - 1)
-			printf("\n");
 		i++;
 	}
+	printf("\n");
 	va_end(list);
 }
