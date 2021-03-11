@@ -29,7 +29,6 @@ void print_strings(const char *separator, const unsigned int n, ...)
 				string = "(nil)";
 			printf("%s%s", string, separator);
 		}
-	printf("%s\n", va_arg(stringlist, char *));
 	}
 	if (separator == NULL)
 	{
@@ -40,8 +39,10 @@ void print_strings(const char *separator, const unsigned int n, ...)
 				string = "(nil)";
 			printf("%s", string);
 		}
-	printf("%s\n", va_arg(stringlist, char *));
 	}
-
+	string = va_arg(stringlist, char *);
+	if (string == NULL)
+		string = "(nil)";
+	printf("%s\n", va_arg(stringlist, char *));
 	va_end(stringlist);
 }
