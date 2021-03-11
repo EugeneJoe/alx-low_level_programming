@@ -17,7 +17,11 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	va_list numlist;
 
 	if (n == 0)
+	{
+		va_start(numlist, n);
+		va_end(numlist);
 		return;
+	}
 	if (separator == NULL)
 		separator = "";
 
