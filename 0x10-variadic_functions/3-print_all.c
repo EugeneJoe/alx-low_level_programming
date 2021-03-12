@@ -30,7 +30,7 @@ int _strlen(const char * const s)
 void print_all(const char * const format, ...)
 {
 	va_list list;
-	int i, num, len;
+	unsigned int i, num, len;
 	char c;
 	double d;
 	char *s;
@@ -38,7 +38,7 @@ void print_all(const char * const format, ...)
 	len = _strlen(format);
 	va_start(list, format);
 	i = 0;
-	while (i < len)
+	while (i < len && format)
 	{
 		switch (format[i])
 		{
@@ -56,8 +56,9 @@ void print_all(const char * const format, ...)
 			break;
 		case 's':
 			s = va_arg(list, char *);
-			if (s != NULL)
-				printf("%s", s);
+			if (s == NULL)
+				s = "(nil)";
+			printf("%s", s);
 			break;
 		default:
 			continue;
