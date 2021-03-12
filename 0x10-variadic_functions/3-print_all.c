@@ -2,20 +2,6 @@
 #include <stdio.h>
 
 /**
- * _strlen - finds the length of as string passed to it
- * @s: string whose length is to be found
- * Return: length of the string
- */
-int _strlen(const char * const s)
-{
-	int x = 0;
-
-	while (*(s + x) != '\0')
-		x++;
-	return (x);
-}
-
-/**
  * print_all - prints anything
  * @format: list of the types of arguments passed to the function
  *
@@ -51,7 +37,7 @@ void print_all(const char * const format, ...)
 			break;
 		case 'f':
 			d = va_arg(list, double);
-			printf("%f", d);
+			printf("%f", (float)d);
 			break;
 		case 's':
 			s = va_arg(list, char *);
