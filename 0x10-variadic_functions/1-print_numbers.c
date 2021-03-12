@@ -17,20 +17,13 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	unsigned int i;
 	va_list numlist;
 
-	if (n == 0)
-		exit(98);
 	va_start(numlist, n);
-	if (separator != NULL)
+	for (i = 0; i < n; i++)
 	{
-		for (i = 0; i < n - 1; i++)
-			printf("%d%s", va_arg(numlist, int), separator);
-		printf("%d\n", va_arg(numlist, int));
+		printf("%d", va_arg(numlist, int));
+		if (i < n - 1 && separator != NULL)
+			printf("%s", separator);
 	}
-	if (separator == NULL)
-	{
-		for (i = 0; i < n - 1; i++)
-			printf("%d", va_arg(numlist, int));
-		printf("%d\n", va_arg(numlist, int));
-	}
+	printf("\n");
 	va_end(numlist);
 }
