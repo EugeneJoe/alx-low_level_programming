@@ -30,15 +30,14 @@ int _strlen(const char * const s)
 void print_all(const char * const format, ...)
 {
 	va_list list;
-	unsigned int i, num, len;
+	unsigned int i, num;
 	char c;
 	double d;
 	char *s;
 
-	len = _strlen(format);
 	va_start(list, format);
 	i = 0;
-	while (i < len && format)
+	while (format && format[i])
 	{
 		switch (format[i])
 		{
@@ -63,7 +62,7 @@ void print_all(const char * const format, ...)
 		default:
 			continue;
 		}
-		if (i < len - 1)
+		if (format[i + 1])
 			printf(", ");
 		i++;
 	}
