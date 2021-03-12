@@ -30,13 +30,11 @@ int _strlen(const char * const s)
 void print_all(const char * const format, ...)
 {
 	va_list list;
-	unsigned int i, num, len;
+	int i, num, len;
 	char c;
 	double d;
 	char *s;
 
-	if (format == NULL)
-		return;
 	len = _strlen(format);
 	va_start(list, format);
 	i = 0;
