@@ -1,5 +1,6 @@
 #include <stdarg.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * print_numbers - prints numbers separated by separator, followed by new line
@@ -17,7 +18,7 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 	va_list numlist;
 
 	if (n == 0)
-		return;
+		exit(98);
 	va_start(numlist, n);
 	if (separator != NULL)
 	{
