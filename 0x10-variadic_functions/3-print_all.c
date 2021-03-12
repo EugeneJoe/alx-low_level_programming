@@ -59,6 +59,8 @@ void print_all(const char * const format, ...)
 			if (s != NULL)
 				printf("%s", s);
 			break;
+		default:
+			continue;
 		}
 		if (i < len - 1)
 			printf(", ");
