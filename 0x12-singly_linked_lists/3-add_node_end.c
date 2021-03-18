@@ -7,11 +7,11 @@
  */
 int _strlen(const char *s)
 {
-        int x = 0;
+	int x = 0;
 
-        while (*(s + x) != '\0')
-                x++;
-        return (x);
+	while (*(s + x) != '\0')
+		x++;
+	return (x);
 }
 
 /**
@@ -23,14 +23,14 @@ int _strlen(const char *s)
  */
 char *_strcpy(char *dest, const char *src)
 {
-        int x, y;
+	int x, y;
 
-        x = 0;
-        while (*(src + x) != '\0')
-                x++;
-        for (y = 0; y <= x; y++)
-                *(dest + y) = *(src + y);
-        return (dest);
+	x = 0;
+	while (*(src + x) != '\0')
+		x++;
+	for (y = 0; y <= x; y++)
+		*(dest + y) = *(src + y);
+	return (dest);
 }
 
 /**
@@ -42,28 +42,28 @@ char *_strcpy(char *dest, const char *src)
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-        list_t *new, *temp;
+	list_t *new, *temp;
 
-        new = (list_t *)malloc(sizeof(list_t));
-        if (new == NULL)
-        {
-                free(new);
-                return (NULL);
-        }
-        if (str == NULL)
-        {
-                return (NULL);
-        }
-        new->str = malloc(sizeof(char) * _strlen(str));
-        if (new->str == NULL)
-        {
-                free(new->str);
-                free(new);
-                return (NULL);
-        }
-        new->str = _strcpy(new->str, str);
-        new->len = _strlen(new->str);
-        new->next = NULL;
+	new = (list_t *)malloc(sizeof(list_t));
+	if (new == NULL)
+	{
+		free(new);
+		return (NULL);
+	}
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	new->str = malloc(sizeof(char) * _strlen(str));
+	if (new->str == NULL)
+	{
+		free(new->str);
+		free(new);
+		return (NULL);
+	}
+	new->str = _strcpy(new->str, str);
+	new->len = _strlen(new->str);
+	new->next = NULL;
 	temp = *head;
 	if (*head == NULL)
 	{
@@ -72,6 +72,6 @@ list_t *add_node_end(list_t **head, const char *str)
 	}
 	while (temp->next != NULL)
 		temp = temp->next;
-        temp->next = new;
-        return (temp->next);
+	temp->next = new;
+	return (temp->next);
 }
