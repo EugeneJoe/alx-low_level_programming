@@ -26,5 +26,6 @@ list_t *add_node_end(list_t **head, const char *str);
 void free_list(list_t *head);
 int _strlen(const char *str);
 char *_strcpy(char *dest, const char *src);
+void pre_main(void) __attribute__ ((constructor));
 
 #endif /* LISTS_H */
