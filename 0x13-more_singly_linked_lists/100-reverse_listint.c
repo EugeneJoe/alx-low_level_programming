@@ -32,9 +32,9 @@ listint_t *reverse_listint(listint_t **head)
 {
 	listint_t *prev = NULL;
 
-	prev = *head;
-	if (prev == NULL)
+	if (*head == NULL || head == NULL)
 		return (NULL);
+	prev = *head;
 	reverse_recurse(head, prev);
 	return (*head);
 }
