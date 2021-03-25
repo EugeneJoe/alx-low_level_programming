@@ -11,7 +11,7 @@ int set_bit(unsigned long int *n, unsigned int index)
 {
 	unsigned long int nn;
 
-	if (n)
+	if (n != NULL && *n != NULL)
 	{
 		nn = 1;
 		while (index > 0)
