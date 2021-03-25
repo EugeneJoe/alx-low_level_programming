@@ -11,15 +11,10 @@ int set_bit(unsigned long int *n, unsigned int index)
 {
 	unsigned long int nn;
 
-	if (n != NULL && *n != NULL)
+	if (n)
 	{
-		nn = 1;
-		while (index > 0)
-		{
-			nn <<= 1;
-			index--;
-		}
-		*n = *n | nn;
+		nn = 1 << index;
+		*n = ((*n & ~mask) | (1 << p));
 		return (1);
 	}
 	else
