@@ -9,23 +9,17 @@
  */
 int set_bit(unsigned long int *n, unsigned int index)
 {
-	unsigned long int *nn;
+	unsigned long int nn;
 
 	if (n)
 	{
-		nn = malloc(sizeof(unsigned long int));
-		if (nn == NULL)
-		{
-			free(nn);
-			return (-1);
-		}
-		*nn = 1;
+		nn = 1;
 		while (index > 0)
 		{
-			*nn <<= 1;
+			nn <<= 1;
 			index--;
 		}
-		*n = *n | *nn;
+		*n = *n | nn;
 		return (1);
 	}
 	else
