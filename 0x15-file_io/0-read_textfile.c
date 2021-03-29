@@ -27,14 +27,17 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	if (chars_printed < 0)
 	{
 		free(buf);
+		close(fd);
 		return (0);
 	}
 	buf[chars_printed] = '\0';
 	chars_printed = write(STDIN_FILENO, buf, letters);
 	free(buf);
 	if (chars_printed < 0)
+	{
+		close(fd);
 		return (0);
-
+	}
 	close(fd);
 	return (chars_printed);
 }
