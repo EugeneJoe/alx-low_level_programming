@@ -9,7 +9,7 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int fd, chars_printed;
+	int fd, chars_printed, chars_read;
 	char *buf;
 
 	if (filename == NULL)
@@ -24,17 +24,17 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		close(fd);
 		return (0);
 	}
-	chars_printed = read(fd, buf, letters);
-	if (chars_printed < 0)
+	chars_read = read(fd, buf, letters);
+	if (chars_read < 0)
 	{
 		free(buf);
 		close(fd);
 		return (0);
 	}
 	buf[letters] = '\0';
-	chars_printed = write(STDIN_FILENO, buf, letters);
+	chars_printed = write(STDIN_FILENO, buf, chars_read);
 	free(buf);
-	if (chars_printed < 0 || chars_printed != (int)letters)
+	if (chars_printed < 0)
 	{
 		close(fd);
 		return (0);
