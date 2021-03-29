@@ -16,7 +16,7 @@ void new_file(const char *filename, char *text_content)
 		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", filename);
 		exit(99);
 	}
-	fd = open(filename, O_WRONLY | O_TRUNC | O_CREAT, S_IWUSR | S_IRUSR);
+	fd = open(filename, O_WRONLY | O_TRUNC | O_CREAT, 0664);
 	if (fd < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", filename);
@@ -59,7 +59,7 @@ void update_file(const char *filename, char *text_content)
 		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", filename);
 		exit(99);
 	}
-	fd = open(filename, O_WRONLY | O_APPEND | O_CREAT, S_IWUSR | S_IRUSR);
+	fd = open(filename, O_WRONLY | O_APPEND | O_CREAT, 0664);
 	if (fd < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", filename);
@@ -126,7 +126,7 @@ void cp(const char *file_from, const char *file_to)
 		read_error(file_from);
 	}
 	new_file(file_to, buf);
-	while (chars_printed == 0)
+	while (chars_printed > 0)
 	{
 		chars_printed = read(fd, buf, 1024);
 		if (chars_printed < 0)
