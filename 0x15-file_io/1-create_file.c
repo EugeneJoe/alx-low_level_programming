@@ -13,7 +13,7 @@ int create_file(const char *filename, char *text_content)
 
 	if (filename == NULL)
 		return (-1);
-	fd = open(filename, O_RDWR | O_TRUNC | O_CREAT);
+	fd = open(filename, O_RDWR | O_TRUNC | O_CREAT, S_IWUSR | S_IRUSR);
 	if (fd < 0)
 		return (-1);
 	if (text_content)
@@ -27,6 +27,11 @@ int create_file(const char *filename, char *text_content)
 			close(fd);
 			return (-1);
 		}
+	}
+	else
+	{
+		close(fd);
+		return (-1);
 	}
 	res = close(fd);
 	if (res < 0)
