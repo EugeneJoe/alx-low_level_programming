@@ -1,90 +1,5 @@
 #include "holberton.h"
 
-/**
- * new_file - creates a file
- * @filename: name of file to be created
- * @text_content: string to write to the created file
- *
- * Return: no return value (void)
- */
-void new_file(const char *filename, char *text_content)
-{
-	int fd, letters, chars_printed, res;
-
-	if (filename == NULL)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", filename);
-		exit(99);
-	}
-	fd = open(filename, O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	if (fd < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", filename);
-		exit(99);
-	}
-	if (text_content)
-	{
-		letters = 0;
-		while (*(text_content + letters))
-			letters++;
-		chars_printed = write(fd, text_content, letters);
-		if (chars_printed < 0)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
-			close(fd);
-			exit(99);
-		}
-	}
-	res = close(fd);
-	if (res < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-		exit(100);
-	}
-}
-
-/**
- * update_file - creates a file
- * @filename: name of file to be created
- * @text_content: string to write to the created file
- *
- * Return: no return value (void)
- */
-void update_file(const char *filename, char *text_content)
-{
-	int fd, letters, chars_printed, res;
-
-	if (filename == NULL)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", filename);
-		exit(99);
-	}
-	fd = open(filename, O_WRONLY | O_APPEND | O_CREAT, 0664);
-	if (fd < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", filename);
-		exit(99);
-	}
-	if (text_content)
-	{
-		letters = 0;
-		while (*(text_content + letters))
-			letters++;
-		chars_printed = write(fd, text_content, letters);
-		if (chars_printed < 0)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
-			close(fd);
-			exit(99);
-		}
-	}
-	res = close(fd);
-	if (res < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-		exit(100);
-	}
-}
 
 /**
  * read_error - print error message
@@ -99,6 +14,18 @@ void read_error(const char *file)
 }
 
 /**
+ * close_error - print error message
+ * @fd: file descriptor
+ *
+ * Return: void
+ */
+void close_error(int fd)
+{
+	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+	exit(100);
+}
+
+/**
  * cp - copy contents of a file to another file
  * @file_from: file to copy from
  * @file_to: file to copy to
@@ -107,7 +34,7 @@ void read_error(const char *file)
  */
 void cp(const char *file_from, const char *file_to)
 {
-	int fd, chars_printed;
+	int fd, fd2, chars_printed, chars_read;
 	char *buf;
 
 	if (file_from == NULL || file_to == NULL)
@@ -118,32 +45,32 @@ void cp(const char *file_from, const char *file_to)
 	buf = malloc(sizeof(char) * 1024);
 	if (buf == NULL)
 		read_error(file_from);
-	chars_printed = read(fd, buf, 1024);
+	fd2 = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	if (fd2 < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+		exit(99);
+	}
+	while ((chars_printed = read(fd, buf, 1024)) > 0)
+	{
+		buf[chars_printed] = '\0';
+		chars_read = write(fd2, buf, chars_printed);
+		if (chars_read != chars_printed)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file_to);
+			exit(99);
+		}
+	}
+	free(buf);
 	if (chars_printed < 0)
 	{
-		free(buf);
 		close(fd);
 		read_error(file_from);
 	}
-	new_file(file_to, buf);
-	while (chars_printed > 0)
-	{
-		chars_printed = read(fd, buf, 1024);
-		if (chars_printed < 0)
-		{
-			free(buf);
-			close(fd);
-			read_error(file_from);
-		}
-		buf[chars_printed] = '\0';
-		update_file(file_to, buf);
-	}
-	free(buf);
 	if (close(fd) < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
-		exit(100);
-	}
+		close_error(fd);
+	if (close(fd2) < 0)
+		close_error(fd2);
 }
 
 /**
