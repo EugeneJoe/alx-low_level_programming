@@ -1,6 +1,49 @@
 #include "holberton.h"
 
 /**
+ * new_file - creates a file
+ * @filename: name of file to be created
+ * @text_content: string to write to the created file
+ *
+ * Return: no return value (void)
+ */
+void new_file(const char *filename, char *text_content)
+{
+	int fd, letters, chars_printed, res;
+
+	if (filename == NULL)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", filename);
+		exit(99);
+	}
+	fd = open(filename, O_WRONLY | O_TRUNC | O_CREAT, S_IWUSR | S_IRUSR);
+	if (fd < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from %s\n", filename);
+		exit(99);
+	}
+	if (text_content)
+	{
+		letters = 0;
+		while (*(text_content + letters))
+			letters++;
+		chars_printed = write(fd, text_content, letters);
+		if (chars_printed < 0)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
+			close(fd);
+			exit(99);
+		}
+	}
+	res = close(fd);
+	if (res < 0)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		exit(100);
+	}
+}
+
+/**
  * update_file - creates a file
  * @filename: name of file to be created
  * @text_content: string to write to the created file
@@ -75,6 +118,14 @@ void cp(const char *file_from, const char *file_to)
 	buf = malloc(sizeof(char) * 1024);
 	if (buf == NULL)
 		read_error(file_from);
+	chars_printed = read(fd, buf, 1024);
+	if (chars_printed < 0)
+	{
+		free(buf);
+		close(fd);
+		read_error(file_from);
+	}
+	new_file(file_to, buf);
 	while (chars_printed == 0)
 	{
 		chars_printed = read(fd, buf, 1024);
