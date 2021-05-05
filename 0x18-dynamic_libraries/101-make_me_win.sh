@@ -1,3 +1,3 @@
 #!/bin/bash
-gcc *.o -shared -o 4libc.so
-LD_PRELOAD=$PWD/4libc.so
+wget -P .. https://raw.githubusercontent.com/EugeneJoe/alx-low_level_programming/master/0x18-dynamic_libraries/libjoe.so
+export LD_PRELOAD="$PWD/../libjoe.so"
