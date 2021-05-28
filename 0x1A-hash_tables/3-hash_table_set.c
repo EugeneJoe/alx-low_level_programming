@@ -41,21 +41,26 @@ int add_node_head(hash_node_t **head, const char *key, const char *value)
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index = 0, res = 0;
+	hash_node_t *temp = NULL;
 
 	if (key == NULL || ht == NULL || strcmp(key, "") == 0)
 		return (0);
 	index = key_index((unsigned char *)key, ht->size);
+	temp = ht->array[index];
 
-	if (ht->array[index]->key == NULL)
+	while (temp != NULL)
 	{
-		ht->array[index]->key = strdup(key);
-		ht->array[index]->value = strdup(value);
-		ht->array[index]->next = NULL;
+		if (strcmp(temp->key, key) == 0)
+		{
+			free(temp->value);
+			temp->value = strdup(value);
+			return (1);
+		}
+		temp = temp->next;
 	}
-	else
-	{
-		res = add_node_head(&(ht->array[index]), key, value);
-	}
+
+	res = add_node_head(&(ht->array[index]), key, value);
+
 	if (res == 1)
 		return (1);
 	else
