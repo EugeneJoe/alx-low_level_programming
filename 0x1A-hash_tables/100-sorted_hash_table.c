@@ -32,7 +32,7 @@ shash_table_t *shash_table_create(unsigned long int size)
 		return (NULL);
 	}
 
-	for(index = 0; index < size; index++)
+	for (index = 0; index < size; index++)
 		new_table->array[index] = NULL;
 
 	return (new_table);
@@ -40,6 +40,7 @@ shash_table_t *shash_table_create(unsigned long int size)
 
 /**
  * add_node_head - adds a new node at the beginning of a list.
+ * @ht: pointer to shash_table_t table
  * @head: pointer to head of the linked list hash_node_t
  * @key: key value of hash table entry (string)
  * @value: value associated with key for hash table
@@ -55,15 +56,11 @@ int add_node_sorted(shash_table_t *ht, shash_node_t **head, const char *key,
 		return (0);
 	new = malloc(sizeof(shash_node_t));
 	if (new == NULL)
-	{
-		free(new);
 		return (0);
-	}
 	new->key = strdup(key);
 	new->value = strdup(value);
 	new->next = *head;
 	*head = new;
-
 	if (ht->shead == NULL)
 	{
 		ht->shead = new;
@@ -81,7 +78,7 @@ int add_node_sorted(shash_table_t *ht, shash_node_t **head, const char *key,
 			new->sprev = temp->sprev;
 			temp->sprev = new;
 			if (new->sprev != NULL)
-			    new->sprev->snext = new;
+				new->sprev->snext = new;
 			else
 				ht->shead = new;
 			return (1);
@@ -91,7 +88,6 @@ int add_node_sorted(shash_table_t *ht, shash_node_t **head, const char *key,
 	new->sprev = ht->stail;
 	ht->stail->snext = new;
 	ht->stail = new;
-
 	return (1);
 }
 
