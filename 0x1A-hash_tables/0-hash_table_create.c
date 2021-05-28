@@ -20,7 +20,7 @@ hash_table_t *hash_table_create(unsigned long int size)
 	}
 
 	new_table->size = size;
-	new_table->array = malloc(sizeof(void *) * size);
+	new_table->array = malloc(sizeof(hash_node_t *) * size);
 	if (new_table->array == NULL)
 	{
 		free(new_table->array);
@@ -29,20 +29,7 @@ hash_table_t *hash_table_create(unsigned long int size)
 	}
 
 	for (idx = 0; idx < size; idx++)
-	{
-		*(new_table->array + idx) = malloc(sizeof(hash_node_t));
-		if (*(new_table->array + idx) == NULL)
-		{
-			for (j = 0; j < idx; j++)
-				free(*(new_table->array + j));
-			free(new_table->array);
-			free(new_table);
-			return (NULL);
-		}
-		new_table->array[idx]->key = NULL;
-		new_table->array[idx]->value = NULL;
-		new_table->array[idx]->next = NULL;
-	}
+		new_table->array[idx] = NULL;
 
 	return (new_table);
 }
