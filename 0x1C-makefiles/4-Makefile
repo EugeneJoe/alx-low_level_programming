@@ -11,14 +11,15 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 all: ${OBJ}
 	${CC} ${CFLAGS} ${OBJ} -o ${NAME}
 
+.PHONY: clean oclean fclean re
 clean:
-	${RM} *~ holberton
+	${RM} *~ ${NAME}
 
 oclean:
 	${RM} ${OBJ}
 
 fclean:
-	${RM} *~ holberton
+	${RM} *~ ${NAME}
 	${RM} ${OBJ}
 
 re: oclean all
