@@ -42,7 +42,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	if (list == NULL || size < 1)
 		return (NULL);
 
-	while (temp->n < value)
+	while (temp->n < value && temp->index < (size - 1))
 	{
 		prev = temp;
 		for (idx = 0; idx < root && temp->next != NULL; idx++)
@@ -52,12 +52,19 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 		if (temp->next == NULL)
 			break;
 	}
-	if (temp->n >= value || temp->next == NULL)
+
+	printf("Value found between indexes [%lu] and [%lu]\n",
+	       prev->index, temp->index);
+	while (prev->index < (size - 1) && prev->n < value)
 	{
-		printf("Value found between indexes [%lu] and [%lu]\n",
-		       prev->index, temp->index);
-		temp = linear_list(prev, value);
-		return (temp);
+		prev = prev->next;
+		if (prev == NULL)
+			return (NULL);
+		printf("Value checked at index [%lu] = [%d]\n",
+		       prev->index, prev->n);
 	}
+	if (prev->n == value)
+		return (prev);
+
 	return (NULL);
 }
