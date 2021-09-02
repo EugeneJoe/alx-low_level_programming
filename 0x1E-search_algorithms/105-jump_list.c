@@ -13,12 +13,15 @@ listint_t *linear_list(listint_t *list, int value)
 {
 	while (list != NULL)
 	{
+		if (list->n > value)
+			break;
 		printf("Value checked at index [%lu] = [%d]\n",
 		       list->index, list->n);
 		if (list->n == value)
 			return (list);
 		list = list->next;
 	}
+	printf("Returning Null...\n");
 	return (NULL);
 }
 
@@ -34,35 +37,32 @@ listint_t *linear_list(listint_t *list, int value)
  */
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	size_t root = sqrt(size), step = 0, idx = 0;
+	size_t root = sqrt(size), idx = 0;
 	listint_t *temp = list, *prev = NULL;
 
 	if (list == NULL || size < 1)
 		return (NULL);
 
-	for (step = 0; step < size; step++)
+	while (temp->n < value)
 	{
-		if (temp->n < value)
-		{
-			prev = temp;
-			for (idx = 0; idx < root && temp->next != NULL; idx++)
-				temp = temp->next;
-			printf("Value checked at index[%lu] = [%d]\n",
-			       temp->index, temp->n);
-			if (temp->next == NULL)
-			{
-				break;
-			}
-		}
-		else if (temp->n >= value)
-		{
-			printf("Value found between indexes [%lu] and [%lu]\n",
-			       prev->index, temp->index);
-			return (linear_list(prev, value));
-
-		}
+		printf("Start\n");
+		prev = temp;
+		for (idx = 0; idx < root && temp->next != NULL; idx++)
+			temp = temp->next;
+		printf("Value checked at index[%lu] = [%d]\n",
+		       temp->index, temp->n);
+		if (temp->next == NULL)
+			break;
 	}
-	printf("Value found between indexes [%lu] and [%lu]\n",
-	       prev->index, temp->index);
-	return (linear_list(prev, value));
+	if (temp->n >= value || temp->next == NULL)
+	{
+		printf("Here\n");
+		printf("Value found between indexes [%lu] and [%lu]\n",
+		       prev->index, temp->index);
+		temp = linear_list(prev, value);
+		printf("Returned\n");
+		return (temp);
+	}
+	printf("Here2\n");
+	return (NULL);
 }
