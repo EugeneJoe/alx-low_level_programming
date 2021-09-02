@@ -40,7 +40,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	if (list == NULL || size < 1)
 		return (NULL);
 
-	for (step = 0; step < size; step += root)
+	for (step = 0; step < size; step++)
 	{
 		if (temp->n < value)
 		{
