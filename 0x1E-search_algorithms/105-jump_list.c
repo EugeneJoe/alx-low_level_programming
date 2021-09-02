@@ -24,6 +24,20 @@ listint_t *linear_list(listint_t *list, int value)
 	return (NULL);
 }
 
+/**
+ * jump - jump forward in a list until the index matches a desired
+ * index, or the last node in the list
+ * @list: list to move forward
+ * @index: desired index
+ *
+ * Return: node with desired index, or last node in the list
+ */
+listint_t *jump(listint_t *list, size_t index)
+{
+	while (list->next != NULL && list->index < index)
+		list = list->next;
+	return (list);
+}
 
 /**
  * jump_list - Searches for a value in a sorted linked list of integers using
@@ -36,7 +50,7 @@ listint_t *linear_list(listint_t *list, int value)
  */
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	size_t root = sqrt(size), idx = 0;
+	size_t root = sqrt(size);
 	listint_t *temp = list, *prev = NULL;
 
 	if (list == NULL || size < 1)
@@ -45,8 +59,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	while (temp->n < value && temp->index < (size - 1))
 	{
 		prev = temp;
-		for (idx = 0; idx < root && temp->next != NULL; idx++)
-			temp = temp->next;
+		temp = jump(prev, temp->index + root);
 		printf("Value checked at index[%lu] = [%d]\n",
 		       temp->index, temp->n);
 		if (temp->next == NULL)
