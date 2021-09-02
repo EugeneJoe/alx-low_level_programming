@@ -50,10 +50,4 @@ typedef struct skiplist_s
 /* Function prototypes */
 listint_t *jump_list(listint_t *list, size_t size, int value);
 
-
-/* Helper Functions */
-listint_t *create_list(int *array, size_t size);
-void free_list(listint_t *list);
-void print_list(const listint_t *list);
-
 #endif /* SEARCH_ALGOS_H */
