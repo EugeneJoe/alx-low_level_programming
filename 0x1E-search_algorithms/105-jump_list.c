@@ -47,7 +47,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 		prev = temp;
 		for (idx = 0; idx < root && temp->next != NULL; idx++)
 			temp = temp->next;
-		printf("Value checked at index[%lu] = [%d]\n",
+		printf("Value checked at index [%lu] = [%d]\n",
 		       temp->index, temp->n);
 		if (temp->next == NULL)
 			break;
